@@ -1,10 +1,9 @@
 package ru.ibs.happynes.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 
@@ -14,7 +13,7 @@ import javax.persistence.*;
 public class ProjectTableMainEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "sequence")
     private Long id;
 
     private String firm;
@@ -36,4 +35,5 @@ public class ProjectTableMainEntity {
     public String toString() {
         return String.join("", firm, name, projectStatus, creatorName);
     }
+
 }

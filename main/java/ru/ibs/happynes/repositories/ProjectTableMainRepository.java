@@ -8,5 +8,6 @@ import java.util.List;
 public interface ProjectTableMainRepository extends JpaRepository<ProjectTableMainEntity, Long> {
 
     ProjectTableMainEntity findProjectTableMainEntityById(Long id);
+    List<ProjectTableMainEntity> findAll();
 
 }
