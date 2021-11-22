@@ -2,10 +2,10 @@ package ru.ibs.happynes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.ibs.happynes.services.ProjectTableMainService;
+import org.springframework.web.bind.annotation.*;
+import ru.ibs.happynes.entities.ProjectTableMainEntity;
+import ru.ibs.happynes.entities.UserEntity;
+import ru.ibs.happynes.services.intefaces.ProjectTableMainService;
 
 import javax.annotation.PostConstruct;
 
@@ -18,7 +18,22 @@ public class ProjectTableMainController {
 
     @PostConstruct
     private void postConstruct(){
-        projectTableMainService.createTable("Apple", "IPhone");
-        projectTableMainService.createTable("AMD", "GraphicCard");
+        projectTableMainService.createTable("Intel", "New processor", "Development", "Anna");
+        projectTableMainService.createTable("AMD", "New graphic card", "Development", "Dima");
+    }
+
+    @GetMapping("read")
+    private Object readCard(@RequestParam(required = false) Long id){
+        if (id != null){
+            return projectTableMainService.readTable(id);
+        }
+        else {
+            return projectTableMainService.readAllTables();
+        }
+    }
+
+    @PostMapping("create")
+    private void createCard(@RequestBody ProjectTableMainEntity body){
+        projectTableMainService.createTable(body.getFirm(), body.getName(), body.getProjectStatus(), body.getCreatorName());
     }
 }
