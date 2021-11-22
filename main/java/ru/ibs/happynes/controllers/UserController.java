@@ -35,4 +35,14 @@ public class UserController {
     private void createUser(@RequestBody UserEntity userEntity){
         userService.createUser(userEntity.getName(), userEntity.getRole(), userEntity.getPassword());
     }
+
+    @PostMapping("delete")
+    private void deleteUser(@RequestParam Long id){
+        userService.deleteUser(id);
+    }
+
+    @PostMapping("update")
+    private void updateUser(@RequestParam Long id, @RequestBody UserEntity userEntity){
+        userService.updateUser(id, userEntity.getName(), userEntity.getRole(), userEntity.getPassword());
+    }
 }

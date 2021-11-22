@@ -29,4 +29,22 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> readAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateUser(Long id, String name, String role, String password) {
+        UserEntity userEntity = userRepository.findUserEntityById(id);
+
+        if (name != null)
+            userEntity.setName(name);
+        if (role != null)
+            userEntity.setRole(role);
+        if (password != null)
+            userEntity.setPassword(password);
+        userRepository.save(userEntity);
+    }
 }
