@@ -21,11 +21,11 @@ public class ProjectTableMainController {
     @Autowired
     ModelMapper modelMapper;
 
-    @PostConstruct
-    private void postConstruct(){
-        projectTableMainService.createTable("Intel", "New processor", "Development", "Anna");
-        projectTableMainService.createTable("AMD", "New graphic card", "Development", "Dima");
-    }
+//    @PostConstruct
+//    private void postConstruct(){
+//        projectTableMainService.createTable("Intel", "New processor", "Development", "Anna");
+//        projectTableMainService.createTable("AMD", "New graphic card", "Development", "Dima");
+//    }
 
     @GetMapping("read")
     private Object readCard(@RequestParam(required = false) Long id){
@@ -39,7 +39,12 @@ public class ProjectTableMainController {
 
     @PostMapping("create")
     private void createCard(@RequestBody ProjectTableMainEntity body){
-        projectTableMainService.createTable(body.getFirm(), body.getName(), body.getProjectStatus(), body.getCreatorName());
+        projectTableMainService.createTable(body.getFirm(), body.getName(), body.getCreatorName(), body.getProjectStatus(), body.isProjectFix(),
+                body.isOnlyPO(), body.isProjectMVP(), body.isProjectStart(), body.getFuncDirection(), body.getProjectArea(), body.getDescription(),
+                body.getTasks(), body.getTasks(), body.getStage(), body.getDate(), body.getTechnologies(), body.getHowManyHolders(),
+                body.isMethodology(), body.isProductDevelop(), body.getDevelopRatio(), body.isHasTesters(), body.isHasTechWriter(),
+                body.isTeamFormed(), body.getLocation(), body.getDeadlineSplit(), body.getOvertimes(), body.getHeadHuntingProcedure(),
+                body.isDocumented(), body.isArchived());
     }
 
     @PostMapping("delete")
