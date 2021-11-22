@@ -3,7 +3,6 @@ package ru.ibs.happynes.services.implementations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ibs.happynes.entities.ProjectTableMainEntity;
-import ru.ibs.happynes.entities.UserEntity;
 import ru.ibs.happynes.repositories.ProjectTableMainRepository;
 import ru.ibs.happynes.services.intefaces.ProjectTableMainService;
 
@@ -17,7 +16,7 @@ public class ProjectTableMainServiceImpl implements ProjectTableMainService {
 
     @Override
     public void createTable(String firm, String name, String status, String creatorName) {
-        final ProjectTableMainEntity projectTableMainEntity = new ProjectTableMainEntity(firm, name, status, creatorName);
+        ProjectTableMainEntity projectTableMainEntity = new ProjectTableMainEntity(firm, name, status, creatorName);
         projectTableMainRepository.save(projectTableMainEntity);
     }
 
@@ -35,18 +34,21 @@ public class ProjectTableMainServiceImpl implements ProjectTableMainService {
     public void updateTable(Long id, String firm, String name, String status, String creatorName) {
         ProjectTableMainEntity projectTableMainEntity = projectTableMainRepository.findProjectTableMainEntityById(id);
 
-        if (firm != null)
+        if (firm != null) {
             projectTableMainEntity.setFirm(firm);
+        }
 
-        if (name != null)
+        if (name != null) {
             projectTableMainEntity.setName(name);
+        }
 
-        if (status != null)
+        if (status != null) {
             projectTableMainEntity.setProjectStatus(status);
+        }
 
-        if (creatorName != null)
+        if (creatorName != null) {
             projectTableMainEntity.setCreatorName(creatorName);
-
+        }
         projectTableMainRepository.save(projectTableMainEntity);
     }
 

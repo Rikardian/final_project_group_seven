@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class ProjectTableMainEntity {
 
@@ -25,10 +24,6 @@ public class ProjectTableMainEntity {
     private String creatorName;
 
     private String projectStatus;
-
-    @JoinColumn
-    @OneToOne(cascade = CascadeType.ALL)
-    private ProjectTableDetailEntity projectTableDetailEntity;
 
     public ProjectTableMainEntity(String firm, String name, String projectStatus,  String creatorName) {
         this.firm = firm;
