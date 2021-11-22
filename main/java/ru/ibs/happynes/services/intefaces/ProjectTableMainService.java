@@ -9,6 +9,6 @@ public interface ProjectTableMainService {
     void createTable(String firm, String name, String status, String creatorName);
     ProjectTableMainEntity readTable(Long id);
     List<ProjectTableMainEntity> readAllTables();
-    void updateTable(Long id);
+    void updateTable(Long id, String firm, String name, String status, String creatorName);
     void deleteTable(Long id);
 }

@@ -26,6 +26,10 @@ public class ProjectTableMainEntity {
 
     private String projectStatus;
 
+    @JoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    private ProjectTableDetailEntity projectTableDetailEntity;
+
     public ProjectTableMainEntity(String firm, String name, String projectStatus,  String creatorName) {
         this.firm = firm;
         this.name = name;

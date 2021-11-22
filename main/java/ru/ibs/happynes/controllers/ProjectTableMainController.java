@@ -36,4 +36,15 @@ public class ProjectTableMainController {
     private void createCard(@RequestBody ProjectTableMainEntity body){
         projectTableMainService.createTable(body.getFirm(), body.getName(), body.getProjectStatus(), body.getCreatorName());
     }
+
+    @PostMapping("delete")
+    private void deleteCard(@RequestParam Long id){
+        projectTableMainService.deleteTable(id);
+    }
+
+    @PostMapping("update")
+    private void updateCard(@RequestParam Long id, @RequestBody ProjectTableMainEntity projectTableMainEntity){
+        projectTableMainService.updateTable(id, projectTableMainEntity.getFirm(), projectTableMainEntity.getName(),
+                projectTableMainEntity.getProjectStatus(), projectTableMainEntity.getCreatorName());
+    }
 }

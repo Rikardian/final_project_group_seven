@@ -30,4 +30,28 @@ public class ProjectTableMainServiceImpl implements ProjectTableMainService {
     public List<ProjectTableMainEntity> readAllTables() {
         return projectTableMainRepository.findAll();
     }
+
+    @Override
+    public void updateTable(Long id, String firm, String name, String status, String creatorName) {
+        ProjectTableMainEntity projectTableMainEntity = projectTableMainRepository.findProjectTableMainEntityById(id);
+
+        if (firm != null)
+            projectTableMainEntity.setFirm(firm);
+
+        if (name != null)
+            projectTableMainEntity.setName(name);
+
+        if (status != null)
+            projectTableMainEntity.setProjectStatus(status);
+
+        if (creatorName != null)
+            projectTableMainEntity.setCreatorName(creatorName);
+
+        projectTableMainRepository.save(projectTableMainEntity);
+    }
+
+    @Override
+    public void deleteTable(Long id) {
+        projectTableMainRepository.deleteById(id);
+    }
 }
